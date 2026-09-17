@@ -5,7 +5,7 @@ const images = [
   { url: 'https://images.unsplash.com/photo-1497935586351-b67a49e012bf?q=80&w=800&auto=format&fit=crop', colSpan: 'col-span-6 md:col-span-4', rowSpan: 'row-span-1' },
   { url: 'https://images.unsplash.com/photo-1600093463592-8e36ae95ef56?q=80&w=800&auto=format&fit=crop', colSpan: 'col-span-6 md:col-span-4', rowSpan: 'row-span-1' },
   { url: 'https://images.unsplash.com/photo-1541167760496-1628856ab772?q=80&w=800&auto=format&fit=crop', colSpan: 'col-span-6 md:col-span-4', rowSpan: 'row-span-1' },
-  { url: 'https://images.unsplash.com/photo-1525351484163-9e45e5148e6c?q=80&w=800&auto=format&fit=crop', colSpan: 'col-span-6 md:col-span-8', rowSpan: 'row-span-1' },
+  { url: '/images/gallery-5.jpg', colSpan: 'col-span-6 md:col-span-8', rowSpan: 'row-span-1' },
 ];
 
 export default function Gallery() {

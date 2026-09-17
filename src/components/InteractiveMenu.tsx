@@ -6,11 +6,11 @@ type Category = 'All' | 'Coffee' | 'Breakfast' | 'Pastries' | 'Cold Drinks';
 const menuItems = [
   { id: 1, name: 'Honey Cinnamon Cappuccino', desc: 'Espresso, steamed milk, local honey, dusting of Ceylon cinnamon.', price: '$5.50', category: 'Coffee', image: 'https://images.unsplash.com/photo-1572442388796-11668a67e53d?q=80&w=800&auto=format&fit=crop', popular: true },
   { id: 2, name: 'Pour Over', desc: 'Rotating selection of single-origin beans, brewed to order.', price: '$4.50', category: 'Coffee', image: 'https://images.unsplash.com/photo-1497935586351-b67a49e012bf?q=80&w=800&auto=format&fit=crop' },
-  { id: 3, name: 'Citrus Ricotta Pancakes', desc: 'Fluffy pancakes, lemon zest, whipped ricotta, maple syrup.', price: '$14.00', category: 'Breakfast', image: 'https://images.unsplash.com/photo-1528669826296-bdc7ebf061dc?q=80&w=800&auto=format&fit=crop' },
+  { id: 3, name: 'Citrus Ricotta Pancakes', desc: 'Fluffy pancakes, lemon zest, whipped ricotta, maple syrup.', price: '$14.00', category: 'Breakfast', image: '/images/pancakes.jpg' },
   { id: 4, name: 'Avocado Tartine', desc: 'Smashed avocado, pickled red onions, radish, microgreens, sourdough.', price: '$11.00', category: 'Breakfast', image: 'https://images.unsplash.com/photo-1541519227354-08fa5d50c44d?q=80&w=800&auto=format&fit=crop', popular: true },
   { id: 5, name: 'Almond Croissant', desc: 'Classic buttery croissant filled and topped with almond frangipane.', price: '$5.00', category: 'Pastries', image: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=800&auto=format&fit=crop' },
   { id: 6, name: 'Iced Matcha Latte', desc: 'Ceremonial grade matcha, vanilla syrup, oat milk.', price: '$6.00', category: 'Cold Drinks', image: 'https://images.unsplash.com/photo-1536256263959-770b48d82b0a?q=80&w=800&auto=format&fit=crop', popular: true },
-  { id: 7, name: 'Cold Brew', desc: 'Steeped for 18 hours, smooth and bold.', price: '$4.50', category: 'Cold Drinks', image: 'https://images.unsplash.com/photo-1461023058943-07cb12437e96?q=80&w=800&auto=format&fit=crop' },
+  { id: 7, name: 'Cold Brew', desc: 'Steeped for 18 hours, smooth and bold.', price: '$4.50', category: 'Cold Drinks', image: '/images/cold-brew.jpg' },
   { id: 8, name: 'Cardamom Bun', desc: 'Swedish-style knotted bun with freshly ground cardamom.', price: '$4.50', category: 'Pastries', image: 'https://images.unsplash.com/photo-1509315811345-672d83ef2fbc?q=80&w=800&auto=format&fit=crop' },
 ];
 

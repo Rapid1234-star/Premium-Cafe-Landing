@@ -1,20 +1,32 @@
 <div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
+  <h1>Ember & Bean | Premium Modern Café</h1>
+  <p>Slow Mornings. Bold Coffee. Good Company. A premium modern café landing page.</p>
 </div>
 
-# Run and deploy your AI Studio app
+## Features
 
-This contains everything you need to run your app locally.
+- **Scroll-Based Storytelling:** A heavily optimized, cinematic 140-frame Canvas scrolling animation describing the coffee roasting process.
+- **Dynamic Device Fallbacks:** Intelligent device detection that dynamically scales resolution or completely drops heavy animations on lower-end devices to ensure battery savings and optimal performance.
+- **Premium Aesthetics:** Dark mode "espresso" themed UI, micro-animations, tailored UI components, and beautiful typography.
+- **Fully Responsive:** Tailored experiences from mobile up to ultra-wide desktop displays.
 
-View your app in AI Studio: https://ai.studio/apps/43f5406f-2b2b-4469-9e2c-6ebfa6b719d1
+## Tech Stack
+
+- **Framework:** React + Vite
+- **Styling:** Tailwind CSS
+- **Animations:** Motion (Framer Motion)
+- **Icons:** Lucide React
 
 ## Run Locally
 
-**Prerequisites:**  Node.js
-
+**Prerequisites:** Node.js
 
 1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+   ```bash
+   npm install
+   ```
+2. Run the development server:
+   ```bash
+   npm run dev
+   ```
+3. Open `http://localhost:3000` to view the site.

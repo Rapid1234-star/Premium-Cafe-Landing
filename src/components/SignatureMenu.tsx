@@ -62,7 +62,7 @@ export default function SignatureMenu() {
               className="group relative rounded-[2rem] overflow-hidden bg-ivory shadow-sm h-[285px]"
             >
               <img
-                src="https://images.unsplash.com/photo-1549903072-7e3e0bf7a5fb?q=80&w=1000&auto=format&fit=crop"
+                src="/images/pistachio-croissant.jpg"
                 alt="Pistachio Croissant"
                 className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
               />
@@ -83,7 +83,7 @@ export default function SignatureMenu() {
               className="group relative rounded-[2rem] overflow-hidden bg-ivory shadow-sm h-[285px]"
             >
               <img
-                src="https://images.unsplash.com/photo-1525351484163-9e45e5148e6c?q=80&w=1000&auto=format&fit=crop"
+                src="/images/truffle-toast.jpg"
                 alt="Truffle Mushroom Toast"
                 className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
               />

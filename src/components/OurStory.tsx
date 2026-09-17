@@ -30,7 +30,7 @@ export default function OurStory() {
               className="absolute -bottom-12 -right-6 lg:-right-12 w-48 lg:w-64 aspect-square rounded-[2rem] border-[12px] border-cream overflow-hidden shadow-2xl hidden md:block"
             >
               <img
-                src="https://images.unsplash.com/photo-1495474472205-51f7d4c0ee18?q=80&w=800&auto=format&fit=crop"
+                src="/images/coffee-beans.jpg"
                 alt="Coffee Beans"
                 className="w-full h-full object-cover"
               />
