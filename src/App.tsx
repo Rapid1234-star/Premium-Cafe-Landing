@@ -20,7 +20,7 @@ import BackToTop from './components/BackToTop';
 
 export default function App() {
   return (
-    <div className="relative scroll-smooth">
+    <div className="relative">
       <Navbar />
       <main>
         <Hero />

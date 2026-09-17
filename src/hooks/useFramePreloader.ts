@@ -1,13 +1,11 @@
 import { useEffect, useRef, useState, useCallback } from 'react';
 import type { DeviceTier } from './useDevicePerformance';
+import { getScrollFrameConfig } from '../config/scrollFrames';
 
-const CONCURRENCY: Record<DeviceTier, number> = {
-  high: 12,
-  mid: 8,
-  low: 0,
-};
+export function useFramePreloader(tier: Exclude<DeviceTier, 'low'>) {
+  const config = getScrollFrameConfig(tier);
+  const { totalFrames, basePath, concurrency } = config;
 
-export function useFramePreloader(totalFrames: number, tier: DeviceTier) {
   const [progress, setProgress] = useState(0);
   const [isReady, setIsReady] = useState(false);
   const [loadedCount, setLoadedCount] = useState(0);
@@ -15,9 +13,12 @@ export function useFramePreloader(totalFrames: number, tier: DeviceTier) {
   const loadedFramesRef = useRef<Map<number, HTMLImageElement>>(new Map());
   const abortRef = useRef(false);
 
-  const getFrameUrl = useCallback((index: number) => {
-    return `/frames/frame-${String(index + 1).padStart(3, '0')}.webp`;
-  }, []);
+  const getFrameUrl = useCallback(
+    (index: number) => {
+      return `${basePath}/frame-${String(index + 1).padStart(3, '0')}.webp`;
+    },
+    [basePath]
+  );
 
   const loadFrame = useCallback(
     (index: number): Promise<HTMLImageElement | null> => {
@@ -54,13 +55,6 @@ export function useFramePreloader(totalFrames: number, tier: DeviceTier) {
   );
 
   useEffect(() => {
-    if (tier === 'low') {
-      setIsReady(false);
-      setProgress(0);
-      setLoadedCount(0);
-      return;
-    }
-
     abortRef.current = false;
     loadedFramesRef.current = new Map();
     setProgress(0);
@@ -68,14 +62,15 @@ export function useFramePreloader(totalFrames: number, tier: DeviceTier) {
     setLoadedCount(0);
 
     let completed = 0;
-    const concurrency = CONCURRENCY[tier];
+    let successful = 0;
 
-    const updateProgress = () => {
+    const updateProgress = (ok: boolean) => {
       completed += 1;
-      setLoadedCount(completed);
+      if (ok) successful += 1;
+      setLoadedCount(successful);
       setProgress(completed / totalFrames);
       if (completed >= totalFrames) {
-        setIsReady(true);
+        setIsReady(successful > 0);
       }
     };
 
@@ -87,8 +82,8 @@ export function useFramePreloader(totalFrames: number, tier: DeviceTier) {
           const index = nextIndex;
           nextIndex += 1;
           if (index >= totalFrames) return;
-          await loadFrame(index);
-          if (!abortRef.current) updateProgress();
+          const result = await loadFrame(index);
+          if (!abortRef.current) updateProgress(result !== null);
         }
       };
 
@@ -102,12 +97,14 @@ export function useFramePreloader(totalFrames: number, tier: DeviceTier) {
     return () => {
       abortRef.current = true;
     };
-  }, [tier, totalFrames, loadFrame]);
+  }, [tier, totalFrames, concurrency, loadFrame]);
 
   return {
     loadedFrames: loadedFramesRef,
     progress,
     isReady,
     loadedCount,
+    totalFrames,
+    config,
   };
 }

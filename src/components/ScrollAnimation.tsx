@@ -1,13 +1,11 @@
 'use client';
 
 import { useRef, useEffect, useCallback } from 'react';
-import { motion, useScroll, useTransform, useMotionValueEvent } from 'motion/react';
+import { motion } from 'motion/react';
 import { useDevicePerformance } from '../hooks/useDevicePerformance';
 import { useFramePreloader } from '../hooks/useFramePreloader';
 import LoadingScreen from './LoadingScreen';
 
-const TOTAL_FRAMES = 140;
-const SCROLL_HEIGHT_VH = 300;
 const MAX_DPR = 1.5;
 
 function ScrollAnimationContent({
@@ -15,24 +13,33 @@ function ScrollAnimationContent({
 }: {
   tier: Exclude<ReturnType<typeof useDevicePerformance>, 'low'>;
 }) {
-  const { loadedFrames, progress, isReady, loadedCount } = useFramePreloader(TOTAL_FRAMES, tier);
+  const { loadedFrames, progress, isReady, loadedCount, totalFrames, config } =
+    useFramePreloader(tier);
 
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasParentRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const frameIndexRef = useRef(0);
   const pendingFrameRef = useRef<number | null>(null);
-  const rafIdRef = useRef<number | null>(null);
+  const drawRafRef = useRef<number | null>(null);
   const canvasSizeRef = useRef({ width: 0, height: 0 });
+  const totalFramesRef = useRef(totalFrames);
+  const loadedFramesRef = useRef(loadedFrames);
+  const resolutionScaleRef = useRef(config.resolutionScale);
 
-  const resolutionScale = tier === 'high' ? 1 : 0.75;
+  totalFramesRef.current = totalFrames;
+  loadedFramesRef.current = loadedFrames;
+  resolutionScaleRef.current = config.resolutionScale;
+
+  const { scrollHeightVh } = config;
 
   const findNearestFrame = useCallback((frameIndex: number): HTMLImageElement | null => {
-    const frames = loadedFrames.current;
+    const frames = loadedFramesRef.current.current;
     const exact = frames.get(frameIndex);
     if (exact) return exact;
 
-    for (let distance = 1; distance < TOTAL_FRAMES; distance += 1) {
+    const total = totalFramesRef.current;
+    for (let distance = 1; distance < total; distance += 1) {
       const prev = frames.get(frameIndex - distance);
       if (prev) return prev;
       const next = frames.get(frameIndex + distance);
@@ -40,14 +47,14 @@ function ScrollAnimationContent({
     }
 
     return null;
-  }, [loadedFrames]);
+  }, []);
 
   const resizeCanvas = useCallback(() => {
     const canvas = canvasRef.current;
     const parent = canvasParentRef.current;
     if (!canvas || !parent) return false;
 
-    const dpr = Math.min(window.devicePixelRatio || 1, MAX_DPR) * resolutionScale;
+    const dpr = Math.min(window.devicePixelRatio || 1, MAX_DPR) * resolutionScaleRef.current;
     const rect = parent.getBoundingClientRect();
     if (rect.width < 2 || rect.height < 2) return false;
 
@@ -63,7 +70,7 @@ function ScrollAnimationContent({
     }
 
     return true;
-  }, [resolutionScale]);
+  }, []);
 
   const drawFrame = useCallback(
     (frameIndex: number) => {
@@ -110,10 +117,10 @@ function ScrollAnimationContent({
   const scheduleDraw = useCallback(
     (frameIndex: number) => {
       pendingFrameRef.current = frameIndex;
-      if (rafIdRef.current !== null) return;
+      if (drawRafRef.current !== null) return;
 
-      rafIdRef.current = requestAnimationFrame(() => {
-        rafIdRef.current = null;
+      drawRafRef.current = requestAnimationFrame(() => {
+        drawRafRef.current = null;
         const next = pendingFrameRef.current;
         pendingFrameRef.current = null;
         if (next !== null) drawFrame(next);
@@ -122,54 +129,89 @@ function ScrollAnimationContent({
     [drawFrame]
   );
 
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ['start start', 'end end'],
-  });
+  const drawFrameRef = useRef(drawFrame);
+  const scheduleDrawRef = useRef(scheduleDraw);
+  drawFrameRef.current = drawFrame;
+  scheduleDrawRef.current = scheduleDraw;
 
-  const frameProgress = useTransform(scrollYProgress, [0, 1], [0, TOTAL_FRAMES - 1]);
-
-  useMotionValueEvent(frameProgress, 'change', (latest) => {
-    const frameIndex = Math.min(TOTAL_FRAMES - 1, Math.max(0, Math.round(latest)));
-    if (frameIndex !== frameIndexRef.current) {
-      scheduleDraw(frameIndex);
-    }
-  });
-
+  // Stable scroll scrub listener (refs avoid stale closures / effect churn)
   useEffect(() => {
-    let mounted = true;
+    const updateFromScroll = () => {
+      const container = containerRef.current;
+      if (!container) return;
 
-    const sync = () => {
-      if (!mounted) return;
-      if (resizeCanvas()) {
-        drawFrame(frameIndexRef.current);
+      const total = container.offsetHeight - window.innerHeight;
+      if (total <= 0) return;
+
+      const progress = Math.min(1, Math.max(0, -container.getBoundingClientRect().top / total));
+      const maxIndex = totalFramesRef.current - 1;
+      const frameIndex = Math.min(maxIndex, Math.max(0, Math.round(progress * maxIndex)));
+
+      if (frameIndex !== frameIndexRef.current) {
+        scheduleDrawRef.current(frameIndex);
       }
     };
 
-    const handleResize = () => sync();
+    window.addEventListener('scroll', updateFromScroll, { passive: true });
+    document.addEventListener('scroll', updateFromScroll, { passive: true, capture: true });
+    updateFromScroll();
 
-    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('scroll', updateFromScroll);
+      document.removeEventListener('scroll', updateFromScroll, true);
+    };
+  }, []);
+
+  useEffect(() => {
+    const sync = () => {
+      if (resizeCanvas()) {
+        drawFrameRef.current(frameIndexRef.current);
+      }
+    };
+
+    window.addEventListener('resize', sync);
     sync();
-
     const raf = requestAnimationFrame(sync);
 
     return () => {
-      mounted = false;
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('resize', sync);
       cancelAnimationFrame(raf);
-      if (rafIdRef.current !== null) cancelAnimationFrame(rafIdRef.current);
     };
-  }, [resizeCanvas, drawFrame]);
+  }, [resizeCanvas]);
 
   useEffect(() => {
     if (!isReady || loadedCount === 0) return;
     if (resizeCanvas()) {
+      // Re-sync to current scroll position once frames are ready
+      const container = containerRef.current;
+      if (container) {
+        const total = container.offsetHeight - window.innerHeight;
+        if (total > 0) {
+          const progress = Math.min(1, Math.max(0, -container.getBoundingClientRect().top / total));
+          const maxIndex = totalFramesRef.current - 1;
+          const frameIndex = Math.min(maxIndex, Math.max(0, Math.round(progress * maxIndex)));
+          drawFrame(frameIndex);
+          return;
+        }
+      }
       drawFrame(frameIndexRef.current);
     }
   }, [isReady, loadedCount, resizeCanvas, drawFrame]);
 
+  useEffect(() => {
+    const root = document.documentElement;
+    const previous = root.style.scrollBehavior;
+    root.style.scrollBehavior = 'auto';
+    return () => {
+      root.style.scrollBehavior = previous;
+    };
+  }, []);
+
   return (
-    <section className="relative w-screen -ml-[calc(50%-50vw)]" aria-label="Coffee crafting animation">
+    <section
+      className="relative w-screen -ml-[calc(50%-50vw)]"
+      aria-label="Coffee crafting animation"
+    >
       <LoadingScreen
         progress={progress}
         isReady={isReady}
@@ -181,7 +223,7 @@ function ScrollAnimationContent({
       <div
         ref={containerRef}
         className="relative bg-espresso"
-        style={{ height: `${SCROLL_HEIGHT_VH}vh` }}
+        style={{ height: `${scrollHeightVh}vh` }}
         aria-hidden="true"
       >
         <div
@@ -199,15 +241,15 @@ function ScrollAnimationContent({
             initial={{ opacity: 0 }}
             animate={{ opacity: isReady ? 1 : 0 }}
             transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="absolute inset-0 flex items-center justify-center pointer-events-none z-10"
+            className="absolute inset-0 flex items-center justify-center pointer-events-none z-10 px-4 sm:px-8"
             style={{ background: 'linear-gradient(180deg, transparent 40%, rgba(43,29,20,0.4) 100%)' }}
           >
-            <div className="px-8 text-center">
+            <div className="text-center max-w-2xl mx-auto">
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: isReady ? 1 : 0, y: isReady ? 0 : 20 }}
                 transition={{ duration: 1, delay: 0.5 }}
-                className="font-serif text-2xl md:text-4xl lg:text-5xl text-ivory/90 leading-tight"
+                className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-ivory/90 leading-tight"
               >
                 Every cup tells a story.
               </motion.p>
@@ -215,7 +257,7 @@ function ScrollAnimationContent({
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: isReady ? 1 : 0, y: isReady ? 0 : 20 }}
                 transition={{ duration: 1, delay: 0.8 }}
-                className="text-ivory/60 text-lg md:text-xl mt-4 max-w-lg mx-auto"
+                className="text-ivory/60 text-base sm:text-lg md:text-xl mt-3 sm:mt-4 max-w-lg mx-auto"
               >
                 From bean to cup, crafted with patience you can taste.
               </motion.p>
@@ -223,7 +265,7 @@ function ScrollAnimationContent({
           </motion.div>
 
           <div
-            className="absolute bottom-12 left-1/2 -translate-x-1/2 flex items-center gap-3 text-ivory/70 text-sm font-medium z-10"
+            className="absolute bottom-8 sm:bottom-12 left-1/2 -translate-x-1/2 flex items-center gap-3 text-ivory/70 text-sm font-medium z-10"
             style={{ pointerEvents: 'none' }}
           >
             <motion.svg
