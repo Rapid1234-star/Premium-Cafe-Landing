@@ -1,0 +1,23 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ivory: #FDFBF7;
+  --color-cream: #F5F2EA;
+  --color-espresso: #2B1D14;
+  --color-charcoal: #1A1A1A;
+  --color-caramel: #C88D5E;
+  --color-terracotta: #A45C40;
+  --color-sage: #8A9A86;
+  
+  --font-sans: 'Inter', sans-serif;
+  --font-serif: 'Playfair Display', serif;
+}
+
+body {
+  @apply bg-ivory text-charcoal font-sans antialiased;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  @apply font-serif;
+}
