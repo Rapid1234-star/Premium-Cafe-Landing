@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import { motion } from 'motion/react';
 import { ArrowRight, Star } from 'lucide-react';
 
@@ -24,25 +25,33 @@ function CoffeeBeanMark({ className }: { className?: string }) {
   );
 }
 
+function HeroHighlight({ children }: { children: ReactNode }) {
+  return (
+    <span className="hero-highlight relative inline font-serif italic text-terracotta">
+      {children}
+    </span>
+  );
+}
+
 export default function Hero() {
   return (
-    <section id="home" className="relative min-h-dvh pt-32 pb-20 overflow-hidden flex items-center">
+    <section id="home" className="relative pt-24 md:pt-28 pb-16 md:pb-24 overflow-hidden">
       {/* Background elements */}
       <div className="absolute top-0 right-0 w-1/2 h-full bg-cream -z-10 rounded-bl-[120px] opacity-70"></div>
       <div className="absolute -top-24 -right-24 w-96 h-96 bg-caramel/10 rounded-full blur-3xl -z-10"></div>
       <div className="absolute bottom-20 -left-24 w-80 h-80 bg-sage/10 rounded-full blur-3xl -z-10"></div>
 
-      <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
+      <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
         {/* Text Content */}
-        <div className="relative z-10 pt-10">
+        <div className="relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif text-espresso leading-[1.35] mb-8">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif text-espresso leading-[1.2] mb-6">
               <span className="block">Slow Mornings.</span>
-              <span className="mt-[0.18em] inline-flex items-end gap-[0.12em]">
+              <span className="mt-[0.12em] inline-flex items-end gap-[0.12em]">
                 Bold Coffee.
                 <CoffeeBeanMark className="h-[1.28em] w-[1.15em] shrink-0 translate-y-[0.22em] text-terracotta" />
               </span>
@@ -53,9 +62,12 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="text-lg text-espresso/80 mb-10 max-w-lg leading-relaxed"
+            className="text-lg text-espresso/80 mb-8 max-w-lg leading-relaxed"
           >
-            Ember & Bean is a place for <span className="font-medium text-espresso">specialty coffee</span>, <span className="font-medium text-espresso">freshly prepared food</span>, <span className="font-medium text-espresso">deep conversations</span>, and relaxed moments. Take your time, we've got the coffee ready.
+            Ember & Bean is a place for <HeroHighlight>specialty coffee</HeroHighlight>,{' '}
+            <HeroHighlight>freshly prepared food</HeroHighlight>,{' '}
+            <HeroHighlight>deep conversations</HeroHighlight>, and relaxed moments. Take your
+            time, we've got the coffee ready.
           </motion.p>
 
           <motion.div
@@ -81,7 +93,7 @@ export default function Hero() {
         </div>
 
         {/* Image Composition */}
-        <div className="relative z-10 lg:h-[700px] flex items-center justify-center">
+        <div className="relative z-10 flex items-start justify-center lg:justify-end">
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
