@@ -1,30 +1,41 @@
-import type { CSSProperties, ImgHTMLAttributes } from 'react';
+import type { CSSProperties } from 'react';
 
 type CoffeeBeanProps = {
   className?: string;
   id?: string;
   style?: CSSProperties;
-} & Pick<ImgHTMLAttributes<HTMLImageElement>, 'alt' | 'draggable'>;
+  /** Prefer the smaller mark for the hero; flyer uses the full-size asset. */
+  size?: 'sm' | 'md';
+  alt?: string;
+  draggable?: boolean;
+};
 
-const BEAN_SRC = '/images/bean.png';
-
-/** Shared brand bean — photoreal PNG used in hero + scroll handoff flyer. */
+/** Shared brand bean — compressed WebP/PNG from the same source asset. */
 export default function CoffeeBean({
   className,
   id,
   style,
+  size = 'md',
   alt = '',
   draggable = false,
 }: CoffeeBeanProps) {
+  const webp = size === 'sm' ? '/images/bean-sm.webp' : '/images/bean.webp';
+  const png = size === 'sm' ? '/images/bean-sm.png' : '/images/bean.png';
+
   return (
-    <img
-      id={id}
-      src={BEAN_SRC}
-      alt={alt}
-      aria-hidden={alt ? undefined : true}
-      draggable={draggable}
-      className={className}
-      style={style}
-    />
+    <picture className="contents">
+      <source srcSet={webp} type="image/webp" />
+      <img
+        id={id}
+        src={png}
+        alt={alt}
+        aria-hidden={alt ? undefined : true}
+        draggable={draggable}
+        className={className}
+        style={style}
+        decoding="async"
+        fetchPriority={size === 'sm' ? 'high' : 'auto'}
+      />
+    </picture>
   );
 }

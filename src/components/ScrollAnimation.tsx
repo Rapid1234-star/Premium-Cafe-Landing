@@ -218,6 +218,7 @@ function ScrollAnimationContent({
       className="relative w-screen -ml-[calc(50%-50vw)]"
       aria-label="Coffee crafting animation"
       data-bean-handoff-section
+      data-bean-film-ready={isReady ? 'true' : 'false'}
     >
       <LoadingScreen
         progress={progress}

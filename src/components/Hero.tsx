@@ -34,6 +34,7 @@ export default function Hero() {
                 Bold Coffee.
                 <CoffeeBean
                   id={BEAN_HANDOFF_START_ID}
+                  size="sm"
                   className="h-[1.2em] w-auto max-w-[1.65em] shrink-0 translate-y-[0.18em] object-contain"
                   style={{ opacity: 'var(--bean-hero-opacity, 1)' }}
                 />
