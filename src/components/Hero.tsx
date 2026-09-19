@@ -1,9 +1,32 @@
 import { motion } from 'motion/react';
-import { ArrowRight, Star, Bean } from 'lucide-react';
+import { ArrowRight, Star } from 'lucide-react';
+
+function CoffeeBeanMark({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 36 40" fill="none" aria-hidden="true" className={className}>
+      <g transform="rotate(32 18 20)">
+        <ellipse cx="18" cy="20" rx="9.2" ry="15.2" fill="currentColor" />
+        <path
+          d="M18 6.2C15.5 12.2 15.5 27.8 18 33.8"
+          stroke="#FDFBF7"
+          strokeWidth="2.1"
+          strokeLinecap="round"
+        />
+        <path
+          d="M13.6 12.2C15.2 9.2 17 7.4 18.6 6.6"
+          stroke="#FDFBF7"
+          strokeWidth="1.1"
+          strokeLinecap="round"
+          opacity="0.4"
+        />
+      </g>
+    </svg>
+  );
+}
 
 export default function Hero() {
   return (
-    <section id="home" className="relative min-h-screen pt-32 pb-20 overflow-hidden flex items-center">
+    <section id="home" className="relative min-h-dvh pt-32 pb-20 overflow-hidden flex items-center">
       {/* Background elements */}
       <div className="absolute top-0 right-0 w-1/2 h-full bg-cream -z-10 rounded-bl-[120px] opacity-70"></div>
       <div className="absolute -top-24 -right-24 w-96 h-96 bg-caramel/10 rounded-full blur-3xl -z-10"></div>
@@ -17,18 +40,12 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
-            <motion.div 
-              animate={{ rotate: 360 }}
-              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-              className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-ivory/50 backdrop-blur-sm border border-espresso/10 text-terracotta mb-6 shadow-sm"
-            >
-              <motion.div animate={{ y: [-3, 3, -3] }} transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}>
-                <Bean className="w-6 h-6" />
-              </motion.div>
-            </motion.div>
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif text-espresso leading-[1.1] mb-8">
-              Slow Mornings.<br />
-              Bold Coffee.
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif text-espresso leading-[1.35] mb-8">
+              <span className="block">Slow Mornings.</span>
+              <span className="mt-[0.18em] inline-flex items-end gap-[0.12em]">
+                Bold Coffee.
+                <CoffeeBeanMark className="h-[1.28em] w-[1.15em] shrink-0 translate-y-[0.22em] text-terracotta" />
+              </span>
             </h1>
           </motion.div>
 

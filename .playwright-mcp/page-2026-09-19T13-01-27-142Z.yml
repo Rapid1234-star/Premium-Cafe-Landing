@@ -1,0 +1,315 @@
+- generic [ref=f1e3]:
+  - navigation [ref=f1e4]:
+    - generic [ref=f1e5]:
+      - link "E&B. ESTD. 2026" [ref=f1e6] [cursor=pointer]:
+        - /url: "#"
+        - generic [ref=f1e7]: E&B.
+        - generic [ref=f1e8]: ESTD. 2026
+      - list [ref=f1e10]:
+        - listitem [ref=f1e11]:
+          - link "Home" [ref=f1e12] [cursor=pointer]:
+            - /url: "#home"
+        - listitem [ref=f1e13]:
+          - link "Our Story" [ref=f1e14] [cursor=pointer]:
+            - /url: "#story"
+        - listitem [ref=f1e15]:
+          - link "Menu" [ref=f1e16] [cursor=pointer]:
+            - /url: "#menu"
+        - listitem [ref=f1e17]:
+          - link "Experience" [ref=f1e18] [cursor=pointer]:
+            - /url: "#experience"
+        - listitem [ref=f1e19]:
+          - link "Reviews" [ref=f1e20] [cursor=pointer]:
+            - /url: "#reviews"
+        - listitem [ref=f1e21]:
+          - link "Visit Us" [ref=f1e22] [cursor=pointer]:
+            - /url: "#visit"
+      - generic [ref=f1e23]:
+        - generic [ref=f1e24]: Open Today
+        - link "Reserve a Table" [ref=f1e26] [cursor=pointer]:
+          - /url: "#visit"
+  - main [ref=f1e27]:
+    - generic [ref=f1e32]:
+      - generic [ref=f1e33]:
+        - heading [level=1] [ref=f1e35]:
+          - text: Slow Mornings.
+          - generic [ref=f1e36]: Bold Coffee
+        - paragraph [ref=f1e40]: Ember & Bean is a place for specialty coffee, freshly prepared food, deep conversations, and relaxed moments. Take your time, we've got the coffee ready.
+        - generic [ref=f1e41]:
+          - link "Reserve a Table" [ref=f1e42] [cursor=pointer]:
+            - /url: "#visit"
+          - link "Explore Our Menu" [ref=f1e45] [cursor=pointer]:
+            - /url: "#menu"
+      - generic [ref=f1e47]:
+        - img "Ember & Bean Cafe Interior" [ref=f1e49]
+        - img "Latte Art" [ref=f1e52]
+        - generic [ref=f1e57]:
+          - generic [ref=f1e58]: 4.9/5
+          - generic [ref=f1e59]: Over 500+ reviews from locals
+    - region "Coffee crafting animation" [ref=f1e60]:
+      - status "Loading animation frames" [ref=f1e61]:
+        - generic [ref=f1e62]:
+          - generic [ref=f1e63]: E&B.
+          - paragraph [ref=f1e64]: Crafting your experience…
+          - paragraph [ref=f1e68]: 0%
+      - generic [ref=f1e70]:
+        - generic:
+          - generic:
+            - paragraph: Every cup tells a story.
+            - paragraph: From bean to cup, crafted with patience you can taste.
+        - generic: Scroll to explore
+    - generic [ref=f1e74]:
+      - generic [ref=f1e75]:
+        - heading "Specialty Coffee" [level=3] [ref=f1e79]
+        - paragraph [ref=f1e80]: Single-origin beans and carefully crafted espresso.
+      - generic [ref=f1e81]:
+        - heading "Fresh Every Morning" [level=3] [ref=f1e89]
+        - paragraph [ref=f1e90]: Breakfast, pastries, and café favorites prepared daily.
+      - generic [ref=f1e91]:
+        - heading "A Place to Stay" [level=3] [ref=f1e96]
+        - paragraph [ref=f1e97]: Comfortable spaces for conversations, work, and slow afternoons.
+      - generic [ref=f1e98]:
+        - heading "Open Daily" [level=3] [ref=f1e103]
+        - paragraph [ref=f1e104]: 7:00 AM — 10:00 PM
+    - generic [ref=f1e106]:
+      - generic [ref=f1e107]:
+        - generic [ref=f1e108]:
+          - heading "Made for Your Kind of Day" [level=2] [ref=f1e109]
+          - paragraph [ref=f1e110]: Our signature offerings, crafted with care to bring a little extra warmth to your routine.
+        - link "See Full Menu" [ref=f1e111] [cursor=pointer]:
+          - /url: "#menu"
+      - generic [ref=f1e114]:
+        - generic [ref=f1e115]:
+          - img "Ember Latte" [ref=f1e116]
+          - generic [ref=f1e118]:
+            - generic [ref=f1e119]: House Signature
+            - heading "The Ember Latte" [level=3] [ref=f1e120]
+            - paragraph [ref=f1e121]: Our namesake. Smooth espresso layered with smoked vanilla bean syrup and lightly toasted oat milk, dusted with cinnamon.
+            - text: $6.50
+        - generic [ref=f1e122]:
+          - generic [ref=f1e123]:
+            - img "Pistachio Croissant" [ref=f1e124]
+            - generic [ref=f1e126]:
+              - heading "Pistachio Croissant" [level=3] [ref=f1e127]
+              - paragraph [ref=f1e128]: Twice-baked, filled with rich pistachio frangipane.
+              - text: $5.50
+          - generic [ref=f1e129]:
+            - img "Truffle Mushroom Toast" [ref=f1e130]
+            - generic [ref=f1e132]:
+              - heading "Truffle Mushroom Toast" [level=3] [ref=f1e133]
+              - paragraph [ref=f1e134]: Wild mushrooms, whipped ricotta, truffle oil on sourdough.
+              - text: $12.00
+    - generic [ref=f1e136]:
+      - generic [ref=f1e137]:
+        - heading "Our Menu" [level=2] [ref=f1e138]
+        - generic [ref=f1e139]:
+          - button "All" [ref=f1e140]
+          - button "Coffee" [ref=f1e141]
+          - button "Breakfast" [ref=f1e142]
+          - button "Pastries" [ref=f1e143]
+          - button "Cold Drinks" [ref=f1e144]
+      - generic [ref=f1e145]:
+        - generic [ref=f1e146]:
+          - generic [ref=f1e147]:
+            - img "Honey Cinnamon Cappuccino" [ref=f1e148]
+            - generic [ref=f1e149]: Popular
+          - generic [ref=f1e150]:
+            - heading "Honey Cinnamon Cappuccino" [level=3] [ref=f1e151]
+            - generic [ref=f1e152]: $5.50
+          - paragraph [ref=f1e153]: Espresso, steamed milk, local honey, dusting of Ceylon cinnamon.
+        - generic [ref=f1e154]:
+          - img "Pour Over" [ref=f1e156]
+          - generic [ref=f1e157]:
+            - heading "Pour Over" [level=3] [ref=f1e158]
+            - generic [ref=f1e159]: $4.50
+          - paragraph [ref=f1e160]: Rotating selection of single-origin beans, brewed to order.
+        - generic [ref=f1e161]:
+          - img "Citrus Ricotta Pancakes" [ref=f1e163]
+          - generic [ref=f1e164]:
+            - heading "Citrus Ricotta Pancakes" [level=3] [ref=f1e165]
+            - generic [ref=f1e166]: $14.00
+          - paragraph [ref=f1e167]: Fluffy pancakes, lemon zest, whipped ricotta, maple syrup.
+        - generic [ref=f1e168]:
+          - generic [ref=f1e169]:
+            - img "Avocado Tartine" [ref=f1e170]
+            - generic [ref=f1e171]: Popular
+          - generic [ref=f1e172]:
+            - heading "Avocado Tartine" [level=3] [ref=f1e173]
+            - generic [ref=f1e174]: $11.00
+          - paragraph [ref=f1e175]: Smashed avocado, pickled red onions, radish, microgreens, sourdough.
+        - generic [ref=f1e176]:
+          - img "Almond Croissant" [ref=f1e178]
+          - generic [ref=f1e179]:
+            - heading "Almond Croissant" [level=3] [ref=f1e180]
+            - generic [ref=f1e181]: $5.00
+          - paragraph [ref=f1e182]: Classic buttery croissant filled and topped with almond frangipane.
+        - generic [ref=f1e183]:
+          - generic [ref=f1e184]:
+            - img "Iced Matcha Latte" [ref=f1e185]
+            - generic [ref=f1e186]: Popular
+          - generic [ref=f1e187]:
+            - heading "Iced Matcha Latte" [level=3] [ref=f1e188]
+            - generic [ref=f1e189]: $6.00
+          - paragraph [ref=f1e190]: Ceremonial grade matcha, vanilla syrup, oat milk.
+        - generic [ref=f1e191]:
+          - img "Cold Brew" [ref=f1e193]
+          - generic [ref=f1e194]:
+            - heading "Cold Brew" [level=3] [ref=f1e195]
+            - generic [ref=f1e196]: $4.50
+          - paragraph [ref=f1e197]: Steeped for 18 hours, smooth and bold.
+        - generic [ref=f1e198]:
+          - img "Cardamom Bun" [ref=f1e200]
+          - generic [ref=f1e201]:
+            - heading "Cardamom Bun" [level=3] [ref=f1e202]
+            - generic [ref=f1e203]: $4.50
+          - paragraph [ref=f1e204]: Swedish-style knotted bun with freshly ground cardamom.
+    - generic [ref=f1e207]:
+      - generic [ref=f1e208]:
+        - img "Barista making coffee" [ref=f1e210]
+        - img "Coffee Beans" [ref=f1e212]
+      - generic [ref=f1e213]:
+        - heading "A Café Built Around the Pause." [level=2] [ref=f1e214]
+        - generic [ref=f1e215]:
+          - paragraph [ref=f1e216]: In a world that constantly asks us to move faster, Ember & Bean was created as a place to slow down. We believe that good coffee shouldn't be rushed, and the best conversations happen when you give them time to unfold.
+          - paragraph [ref=f1e217]: "Every bean we pull, every pastry we bake, and every space we've designed serves one purpose: to give you a moment of genuine warmth in your day."
+        - generic [ref=f1e218]:
+          - generic [ref=f1e219]:
+            - generic [ref=f1e220]: 12+
+            - generic [ref=f1e221]: Signature Drinks
+          - generic [ref=f1e222]:
+            - generic [ref=f1e223]: 7 AM
+            - generic [ref=f1e224]: Doors Open
+          - generic [ref=f1e225]:
+            - generic [ref=f1e226]: 100%
+            - generic [ref=f1e227]: Made With Care
+    - generic [ref=f1e229]:
+      - generic [ref=f1e230]:
+        - heading "More Than Just Coffee" [level=2] [ref=f1e231]
+        - paragraph [ref=f1e232]: We've designed our space to seamlessly fit into the different parts of your day.
+      - generic [ref=f1e233]:
+        - generic [ref=f1e234]:
+          - img "Morning Ritual" [ref=f1e237]
+          - generic [ref=f1e238]:
+            - heading "Morning Ritual" [level=3] [ref=f1e239]
+            - paragraph [ref=f1e240]: Start your day right with a perfectly dialed-in espresso and a fresh pastry warm from the oven.
+        - generic [ref=f1e241]:
+          - img "Work & Create" [ref=f1e244]
+          - generic [ref=f1e245]:
+            - heading "Work & Create" [level=3] [ref=f1e246]
+            - paragraph [ref=f1e247]: Find your focus. Comfortable seating, ample power outlets, and reliable Wi-Fi for your deep work sessions.
+        - generic [ref=f1e248]:
+          - img "Meet & Unwind" [ref=f1e251]
+          - generic [ref=f1e252]:
+            - heading "Meet & Unwind" [level=3] [ref=f1e253]
+            - paragraph [ref=f1e254]: The perfect backdrop for catching up with old friends or making new ones over a warm cup.
+    - generic [ref=f1e255]:
+      - img "Atmospheric cafe scene" [ref=f1e257]
+      - generic [ref=f1e259]:
+        - heading "\"Stay for one more cup.\"" [level=2] [ref=f1e260]
+        - paragraph [ref=f1e261]: Good coffee has a way of making time slow down.
+    - generic [ref=f1e264]:
+      - generic [ref=f1e266]:
+        - heading "Good Coffee. Good Words." [level=2] [ref=f1e267]: Good Coffee.Good Words.
+        - generic [ref=f1e268]:
+          - generic [ref=f1e269]: "4.9"
+          - generic [ref=f1e270]: Based on 500+ visits
+        - paragraph [ref=f1e283]: We're incredibly grateful for the community that has grown around our café. Here is what they have to say.
+      - generic [ref=f1e284]:
+        - generic [ref=f1e285]:
+          - generic [ref=f1e286]:
+            - img "Sarah M." [ref=f1e287]
+            - generic [ref=f1e288]: Sarah M.
+          - paragraph [ref=f1e301]: "\"The absolute best pour-over I've had in the city. The space is gorgeous and the staff actually takes the time to explain the flavor profiles.\""
+        - generic [ref=f1e302]:
+          - generic [ref=f1e303]:
+            - img "James T." [ref=f1e304]
+            - generic [ref=f1e305]: James T.
+          - paragraph [ref=f1e318]: "\"My go-to spot for deep work. The Wi-Fi is rock solid, the playlists are great, and the Pistachio Croissant is dangerously good.\""
+        - generic [ref=f1e319]:
+          - generic [ref=f1e320]:
+            - img "Elena R." [ref=f1e321]
+            - generic [ref=f1e322]: Elena R.
+          - paragraph [ref=f1e335]: "\"Such a warm, inviting atmosphere. You don't feel rushed here. It really feels like a neighborhood living room.\""
+    - generic [ref=f1e337]:
+      - heading "Glimpses of Ember & Bean" [level=2] [ref=f1e339]
+      - generic [ref=f1e340]:
+        - img "Cafe Gallery Image" [ref=f1e342]
+        - img "Cafe Gallery Image" [ref=f1e344]
+        - img "Cafe Gallery Image" [ref=f1e346]
+        - img "Cafe Gallery Image" [ref=f1e348]
+        - img "Cafe Gallery Image" [ref=f1e350]
+    - generic [ref=f1e354]:
+      - generic [ref=f1e356]:
+        - heading "Your Table Is Waiting" [level=2] [ref=f1e357]
+        - generic [ref=f1e358]:
+          - generic [ref=f1e363]:
+            - generic [ref=f1e364]: Location
+            - generic [ref=f1e365]: 124 Maple Street, historic district.Plenty of street parking available.
+          - generic [ref=f1e370]:
+            - generic [ref=f1e371]: Hours
+            - generic [ref=f1e372]: Monday — Sunday7:00 AM — 10:00 PM
+          - generic [ref=f1e376]:
+            - generic [ref=f1e377]: Contact
+            - generic [ref=f1e378]: +1 (555) 123-4567hello@emberandbean.com
+        - generic [ref=f1e379]:
+          - button "Reserve a Table" [ref=f1e380]
+          - button "Get Directions" [ref=f1e381]
+      - generic [ref=f1e384]:
+        - img "Ember & Bean Location" [ref=f1e385]
+        - generic [ref=f1e386]:
+          - generic:
+            - generic: Ember & Bean
+            - generic: 124 Maple St.
+  - contentinfo [ref=f1e387]:
+    - generic [ref=f1e388]:
+      - generic [ref=f1e389]:
+        - generic [ref=f1e390]:
+          - link "E&B." [ref=f1e391] [cursor=pointer]:
+            - /url: "#"
+          - paragraph [ref=f1e392]: Slow Mornings. Bold Coffee. Good Company. A premium modern café experience.
+        - generic [ref=f1e393]:
+          - heading "Explore" [level=4] [ref=f1e394]
+          - list [ref=f1e395]:
+            - listitem [ref=f1e396]:
+              - link "Home" [ref=f1e397] [cursor=pointer]:
+                - /url: "#home"
+            - listitem [ref=f1e398]:
+              - link "Our Story" [ref=f1e399] [cursor=pointer]:
+                - /url: "#story"
+            - listitem [ref=f1e400]:
+              - link "Menu" [ref=f1e401] [cursor=pointer]:
+                - /url: "#menu"
+            - listitem [ref=f1e402]:
+              - link "Experience" [ref=f1e403] [cursor=pointer]:
+                - /url: "#experience"
+            - listitem [ref=f1e404]:
+              - link "Reviews" [ref=f1e405] [cursor=pointer]:
+                - /url: "#reviews"
+        - generic [ref=f1e406]:
+          - heading "Visit" [level=4] [ref=f1e407]
+          - list [ref=f1e408]:
+            - listitem [ref=f1e409]: 124 Maple Street
+            - listitem [ref=f1e410]: Mon—Sun
+            - listitem [ref=f1e411]: 7:00 AM — 10:00 PM
+            - listitem [ref=f1e412]:
+              - link "+1 (555) 123-4567" [ref=f1e413] [cursor=pointer]:
+                - /url: tel:+15551234567
+        - generic [ref=f1e414]:
+          - heading "Follow" [level=4] [ref=f1e415]
+          - list [ref=f1e416]:
+            - listitem [ref=f1e417]:
+              - link "Instagram" [ref=f1e418] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=f1e419]:
+              - link "Facebook" [ref=f1e420] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=f1e421]:
+              - link "TikTok" [ref=f1e422] [cursor=pointer]:
+                - /url: "#"
+      - generic [ref=f1e423]:
+        - paragraph [ref=f1e424]: © 2026 Ember & Bean Café. All rights reserved.
+        - generic [ref=f1e425]:
+          - link "Privacy Policy" [ref=f1e426] [cursor=pointer]:
+            - /url: "#"
+          - link "Terms of Service" [ref=f1e427] [cursor=pointer]:
+            - /url: "#"
