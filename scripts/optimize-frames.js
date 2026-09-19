@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import { spawnSync } from 'child_process';
 import { fileURLToPath } from 'url';
 import sharp from 'sharp';
 
@@ -92,6 +93,18 @@ async function optimizeFrames() {
   console.log('\n--- Summary ---');
   console.log(`High: ${highCount} frames @ max ${HIGH.maxWidth}px → public/frames`);
   console.log(`Mid:  ${midCount} frames @ max ${MID.maxWidth}px → public/frames-mid`);
+
+  // Keep the empty-cup start frame if the source exists (avoids double-bean on handoff)
+  const startSrc = path.resolve(ROOT, '../start.png');
+  if (fs.existsSync(startSrc)) {
+    console.log('\nRe-applying custom start frame…');
+    const result = spawnSync(process.execPath, [path.join(__dirname, 'replace-start-frame.js'), startSrc], {
+      stdio: 'inherit',
+    });
+    if (result.status !== 0) {
+      throw new Error('replace-start-frame failed');
+    }
+  }
 }
 
 optimizeFrames().catch((err) => {

@@ -8,6 +8,17 @@ import LoadingScreen from './LoadingScreen';
 
 const MAX_DPR = 1.5;
 
+/**
+ * Flying hero-bean landing spot — align with the bean in frame-002.
+ * Edit these two numbers only (percent of the sticky full-screen canvas):
+ *   leftPct → 50 = center, lower = more left
+ *   topPct  → higher = further down
+ */
+const HANDOFF_END = {
+  leftPct: 50,
+  topPct: 70,
+} as const;
+
 function ScrollAnimationContent({
   tier,
 }: {
@@ -16,6 +27,7 @@ function ScrollAnimationContent({
   const { loadedFrames, progress, isReady, loadedCount, totalFrames, config } =
     useFramePreloader(tier);
 
+  const sectionRef = useRef<HTMLElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const textOpacity = useMotionValue(1);
 
@@ -74,6 +86,13 @@ function ScrollAnimationContent({
     return true;
   }, []);
 
+  const publishFrameIndex = useCallback((frameIndex: number) => {
+    const section = sectionRef.current;
+    if (!section) return;
+    if (section.getAttribute('data-bean-frame') === String(frameIndex)) return;
+    section.setAttribute('data-bean-frame', String(frameIndex));
+  }, []);
+
   const drawFrame = useCallback(
     (frameIndex: number) => {
       const canvas = canvasRef.current;
@@ -112,8 +131,9 @@ function ScrollAnimationContent({
       ctx.fillRect(0, 0, width, height);
       ctx.drawImage(frame, offsetX, offsetY, drawWidth, drawHeight);
       frameIndexRef.current = frameIndex;
+      publishFrameIndex(frameIndex);
     },
-    [findNearestFrame]
+    [findNearestFrame, publishFrameIndex]
   );
 
   const scheduleDraw = useCallback(
@@ -215,10 +235,12 @@ function ScrollAnimationContent({
 
   return (
     <section
+      ref={sectionRef}
       className="relative w-full bg-espresso"
       aria-label="Coffee crafting animation"
       data-bean-handoff-section
       data-bean-film-ready={isReady ? 'true' : 'false'}
+      data-bean-frame="0"
     >
       <LoadingScreen
         progress={progress}
@@ -249,10 +271,14 @@ function ScrollAnimationContent({
             aria-hidden="true"
           />
 
-          {/* Soft handoff target — meet the film bean near the cup base, then dissolve */}
+          {/* Handoff target — tweak HANDOFF_END at top of this file */}
           <div
             id="bean-handoff-end"
-            className="pointer-events-none absolute left-1/2 top-[78%] z-[5] h-24 w-24 -translate-x-1/2 -translate-y-1/2 sm:h-28 sm:w-28 md:h-32 md:w-32"
+            className="pointer-events-none absolute z-[5] h-20 w-20 -translate-x-1/2 -translate-y-1/2 sm:h-24 sm:w-24 md:h-28 md:w-28"
+            style={{
+              left: `${HANDOFF_END.leftPct}%`,
+              top: `${HANDOFF_END.topPct}%`,
+            }}
             aria-hidden="true"
           />
 
