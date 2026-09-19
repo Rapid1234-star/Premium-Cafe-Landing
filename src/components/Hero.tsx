@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { ArrowRight, Star } from 'lucide-react';
+import { ArrowRight, Star, Bean } from 'lucide-react';
 
 export default function Hero() {
   return (
@@ -17,13 +17,18 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
-            <span className="inline-block py-1 px-3 rounded-full bg-terracotta/10 text-terracotta text-sm font-medium mb-6">
-              Est. 2026 · Specialty Coffee
-            </span>
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif text-espresso leading-[1.1] mb-6">
+            <motion.div 
+              animate={{ rotate: 360 }}
+              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+              className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-ivory/50 backdrop-blur-sm border border-espresso/10 text-terracotta mb-6 shadow-sm"
+            >
+              <motion.div animate={{ y: [-3, 3, -3] }} transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}>
+                <Bean className="w-6 h-6" />
+              </motion.div>
+            </motion.div>
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif text-espresso leading-[1.1] mb-8">
               Slow Mornings.<br />
-              Bold Coffee.<br />
-              <span className="italic text-charcoal/80">Good Company.</span>
+              Bold Coffee.
             </h1>
           </motion.div>
 
@@ -31,9 +36,9 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="text-lg text-espresso/70 mb-10 max-w-lg leading-relaxed"
+            className="text-lg text-espresso/80 mb-10 max-w-lg leading-relaxed"
           >
-            Ember & Bean is a place for specialty coffee, freshly prepared food, deep conversations, and relaxed moments. Take your time, we've got the coffee ready.
+            Ember & Bean is a place for <span className="font-medium text-espresso">specialty coffee</span>, <span className="font-medium text-espresso">freshly prepared food</span>, <span className="font-medium text-espresso">deep conversations</span>, and relaxed moments. Take your time, we've got the coffee ready.
           </motion.p>
 
           <motion.div

@@ -33,8 +33,13 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
         {/* Logo */}
-        <a href="#" className="font-serif text-2xl font-bold tracking-tight text-espresso">
-          E&B<span className="text-terracotta">.</span>
+        <a href="#" className="flex flex-col items-start justify-center">
+          <span className="font-serif text-2xl font-bold tracking-tight text-espresso leading-none">
+            E&B<span className="text-terracotta">.</span>
+          </span>
+          <span className="text-[0.65rem] tracking-[0.25em] text-espresso/70 font-sans uppercase mt-1 ml-0.5">
+            ESTD. 2026
+          </span>
         </a>
 
         {/* Desktop Nav */}

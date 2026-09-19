@@ -5,6 +5,7 @@ const reviews = [
   {
     name: 'Sarah M.',
     initials: 'SM',
+    image: 'https://i.pravatar.cc/150?u=sarah',
     text: "The absolute best pour-over I've had in the city. The space is gorgeous and the staff actually takes the time to explain the flavor profiles.",
     rating: 5,
     highlight: true,
@@ -12,6 +13,7 @@ const reviews = [
   {
     name: 'James T.',
     initials: 'JT',
+    image: 'https://i.pravatar.cc/150?u=james',
     text: "My go-to spot for deep work. The Wi-Fi is rock solid, the playlists are great, and the Pistachio Croissant is dangerously good.",
     rating: 5,
     highlight: false,
@@ -19,6 +21,7 @@ const reviews = [
   {
     name: 'Elena R.',
     initials: 'ER',
+    image: 'https://i.pravatar.cc/150?u=elena',
     text: "Such a warm, inviting atmosphere. You don't feel rushed here. It really feels like a neighborhood living room.",
     rating: 5,
     highlight: false,
@@ -64,18 +67,20 @@ export default function Reviews() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.8, delay: idx * 0.2 }}
-                className={`p-8 rounded-[2rem] ${
+                className={`p-8 rounded-[2rem] transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ${
                   review.highlight 
                     ? 'bg-espresso text-ivory md:col-span-2' 
                     : 'bg-ivory text-espresso shadow-sm'
                 }`}
               >
                 <div className="flex items-center gap-4 mb-6">
-                  <div className={`w-12 h-12 rounded-full flex items-center justify-center font-serif text-lg ${
-                    review.highlight ? 'bg-ivory/10 text-ivory' : 'bg-cream text-espresso'
-                  }`}>
-                    {review.initials}
-                  </div>
+                  <img 
+                    src={review.image} 
+                    alt={review.name}
+                    className={`w-14 h-14 rounded-full object-cover shadow-sm border-2 ${
+                      review.highlight ? 'border-ivory/20' : 'border-espresso/10'
+                    }`}
+                  />
                   <div>
                     <div className="font-medium">{review.name}</div>
                     <div className="flex text-terracotta mt-1">

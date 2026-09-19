@@ -1,7 +1,7 @@
 'use client';
 
 import { useRef, useEffect, useCallback } from 'react';
-import { motion } from 'motion/react';
+import { motion, useMotionValue } from 'motion/react';
 import { useDevicePerformance } from '../hooks/useDevicePerformance';
 import { useFramePreloader } from '../hooks/useFramePreloader';
 import LoadingScreen from './LoadingScreen';
@@ -17,6 +17,8 @@ function ScrollAnimationContent({
     useFramePreloader(tier);
 
   const containerRef = useRef<HTMLDivElement>(null);
+  const textOpacity = useMotionValue(1);
+
   const canvasParentRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const frameIndexRef = useRef(0);
@@ -144,6 +146,10 @@ function ScrollAnimationContent({
       if (total <= 0) return;
 
       const progress = Math.min(1, Math.max(0, -container.getBoundingClientRect().top / total));
+      
+      // Sync text opacity to exactly fade out in first 20%
+      textOpacity.set(Math.max(0, 1 - progress * 5));
+
       const maxIndex = totalFramesRef.current - 1;
       const frameIndex = Math.min(maxIndex, Math.max(0, Math.round(progress * maxIndex)));
 
@@ -238,18 +244,19 @@ function ScrollAnimationContent({
           />
 
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: isReady ? 1 : 0 }}
+            style={{ 
+              opacity: isReady ? textOpacity : 0,
+              background: 'linear-gradient(180deg, transparent 20%, rgba(43,29,20,0.6) 80%)'
+            }}
             transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="absolute inset-0 flex items-center justify-center pointer-events-none z-10 px-4 sm:px-8"
-            style={{ background: 'linear-gradient(180deg, transparent 40%, rgba(43,29,20,0.4) 100%)' }}
+            className="absolute inset-0 flex items-start justify-center pt-[20vh] pointer-events-none z-10 px-4 sm:px-8"
           >
             <div className="text-center max-w-2xl mx-auto">
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: isReady ? 1 : 0, y: isReady ? 0 : 20 }}
                 transition={{ duration: 1, delay: 0.5 }}
-                className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-ivory/90 leading-tight"
+                className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-ivory font-bold drop-shadow-lg leading-tight"
               >
                 Every cup tells a story.
               </motion.p>
@@ -257,7 +264,7 @@ function ScrollAnimationContent({
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: isReady ? 1 : 0, y: isReady ? 0 : 20 }}
                 transition={{ duration: 1, delay: 0.8 }}
-                className="text-ivory/60 text-base sm:text-lg md:text-xl mt-3 sm:mt-4 max-w-lg mx-auto"
+                className="text-ivory/90 text-lg sm:text-xl md:text-2xl mt-4 sm:mt-5 max-w-lg mx-auto font-medium drop-shadow-md"
               >
                 From bean to cup, crafted with patience you can taste.
               </motion.p>
