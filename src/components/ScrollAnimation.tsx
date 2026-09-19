@@ -217,6 +217,7 @@ function ScrollAnimationContent({
     <section
       className="relative w-screen -ml-[calc(50%-50vw)]"
       aria-label="Coffee crafting animation"
+      data-bean-handoff-section
     >
       <LoadingScreen
         progress={progress}
@@ -239,7 +240,18 @@ function ScrollAnimationContent({
           <canvas
             ref={canvasRef}
             className="w-full h-full block"
-            style={{ width: '100%', height: '100%' }}
+            style={{
+              width: '100%',
+              height: '100%',
+              opacity: 'var(--bean-canvas-reveal, 1)',
+            }}
+            aria-hidden="true"
+          />
+
+          {/* Soft handoff target — meet the film bean near the cup base, then dissolve */}
+          <div
+            id="bean-handoff-end"
+            className="pointer-events-none absolute left-1/2 top-[78%] z-[5] h-24 w-24 -translate-x-1/2 -translate-y-1/2 sm:h-28 sm:w-28 md:h-32 md:w-32"
             aria-hidden="true"
           />
 

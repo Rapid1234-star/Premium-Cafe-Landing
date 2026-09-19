@@ -1,29 +1,8 @@
 import type { ReactNode } from 'react';
 import { motion } from 'motion/react';
 import { ArrowRight, Star } from 'lucide-react';
-
-function CoffeeBeanMark({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 36 40" fill="none" aria-hidden="true" className={className}>
-      <g transform="rotate(32 18 20)">
-        <ellipse cx="18" cy="20" rx="9.2" ry="15.2" fill="currentColor" />
-        <path
-          d="M18 6.2C15.5 12.2 15.5 27.8 18 33.8"
-          stroke="#FDFBF7"
-          strokeWidth="2.1"
-          strokeLinecap="round"
-        />
-        <path
-          d="M13.6 12.2C15.2 9.2 17 7.4 18.6 6.6"
-          stroke="#FDFBF7"
-          strokeWidth="1.1"
-          strokeLinecap="round"
-          opacity="0.4"
-        />
-      </g>
-    </svg>
-  );
-}
+import CoffeeBean from './CoffeeBean';
+import { BEAN_HANDOFF_START_ID } from './BeanHandoff';
 
 function HeroHighlight({ children }: { children: ReactNode }) {
   return (
@@ -53,7 +32,11 @@ export default function Hero() {
               <span className="block">Slow Mornings.</span>
               <span className="mt-[0.12em] inline-flex items-end gap-[0.12em]">
                 Bold Coffee.
-                <CoffeeBeanMark className="h-[1.28em] w-[1.15em] shrink-0 translate-y-[0.22em] text-terracotta" />
+                <CoffeeBean
+                  id={BEAN_HANDOFF_START_ID}
+                  className="h-[1.2em] w-auto max-w-[1.65em] shrink-0 translate-y-[0.18em] object-contain"
+                  style={{ opacity: 'var(--bean-hero-opacity, 1)' }}
+                />
               </span>
             </h1>
           </motion.div>

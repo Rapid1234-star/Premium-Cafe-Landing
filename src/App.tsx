@@ -5,6 +5,7 @@
 
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
+import BeanHandoff from './components/BeanHandoff';
 import ScrollAnimation from './components/ScrollAnimation';
 import FeatureStrip from './components/FeatureStrip';
 import SignatureMenu from './components/SignatureMenu';
@@ -37,6 +38,7 @@ export default function App() {
       </main>
       <Footer />
       <BackToTop />
+      <BeanHandoff />
     </div>
   );
 }
