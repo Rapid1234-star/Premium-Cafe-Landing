@@ -215,7 +215,7 @@ function ScrollAnimationContent({
 
   return (
     <section
-      className="relative w-screen -ml-[calc(50%-50vw)]"
+      className="relative w-full overflow-hidden bg-espresso"
       aria-label="Coffee crafting animation"
       data-bean-handoff-section
       data-bean-film-ready={isReady ? 'true' : 'false'}
@@ -230,7 +230,7 @@ function ScrollAnimationContent({
 
       <div
         ref={containerRef}
-        className="relative bg-espresso"
+        className="relative w-full bg-espresso"
         style={{ height: `${scrollHeightVh}vh` }}
         aria-hidden="true"
       >
@@ -240,7 +240,7 @@ function ScrollAnimationContent({
         >
           <canvas
             ref={canvasRef}
-            className="w-full h-full block"
+            className="absolute inset-0 h-full w-full block"
             style={{
               width: '100%',
               height: '100%',

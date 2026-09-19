@@ -14,13 +14,16 @@ function HeroHighlight({ children }: { children: ReactNode }) {
 
 export default function Hero() {
   return (
-    <section id="home" className="relative pt-24 md:pt-28 pb-16 md:pb-24 overflow-hidden">
+    <section
+      id="home"
+      className="relative min-h-[100dvh] pt-24 md:pt-28 pb-16 md:pb-20 overflow-hidden flex flex-col justify-center"
+    >
       {/* Background elements */}
       <div className="absolute top-0 right-0 w-1/2 h-full bg-cream -z-10 rounded-bl-[120px] opacity-70"></div>
       <div className="absolute -top-24 -right-24 w-96 h-96 bg-caramel/10 rounded-full blur-3xl -z-10"></div>
       <div className="absolute bottom-20 -left-24 w-80 h-80 bg-sage/10 rounded-full blur-3xl -z-10"></div>
 
-      <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+      <div className="max-w-7xl mx-auto px-6 w-full grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
         {/* Text Content */}
         <div className="relative z-10">
           <motion.div
@@ -77,7 +80,7 @@ export default function Hero() {
         </div>
 
         {/* Image Composition */}
-        <div className="relative z-10 flex items-start justify-center lg:justify-end">
+        <div className="relative z-10 flex items-center justify-center lg:justify-end">
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
